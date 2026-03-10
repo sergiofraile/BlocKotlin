@@ -34,7 +34,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Generate Dokka HTML docs
-        run: ./gradlew :bloc:dokkaHtml
+        run: ./gradlew :bloc:dokkaGeneratePublicationHtml
 
       - name: Add CNAME for custom domain
         run: echo "blockotlin.thewalkingpuffin.com" > bloc/build/dokka/html/CNAME
