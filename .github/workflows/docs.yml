@@ -36,6 +36,9 @@ jobs:
       - name: Generate Dokka HTML docs
         run: ./gradlew :bloc:dokkaHtml
 
+      - name: Add CNAME for custom domain
+        run: echo "blockotlin.thewalkingpuffin.com" > bloc/build/dokka/html/CNAME
+
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
