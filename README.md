@@ -1,5 +1,7 @@
 # BlocKotlin
 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
 An Android showcase of the **Bloc** state-management pattern written in Kotlin and Jetpack Compose, mirroring the iOS Swift implementation at [BlocSwift](https://github.com/sergiofraile/BlocSwift).
 
 The project is split into two modules:
@@ -198,3 +200,19 @@ Or in Android Studio: **Run** → **Edit Configurations** → **+** → **JUnit*
 The iOS Swift implementation lives at [BlocSwift](https://github.com/sergiofraile/BlocSwift).
 
 The Bloc library API is intentionally parallel — `Bloc`, `Cubit`, `HydratedBloc`, `BlocObserver`, `EventTransformer`, `BlocListener`, `BlocBuilder`, `BlocSelector`, `BlocConsumer` all exist in both implementations with matching semantics. The `:bloc` Kotlin module is structured to be KMP-ready for future cross-platform sharing.
+
+---
+
+## License
+
+This project is licensed under the **Apache License, Version 2.0**. See the [LICENSE](LICENSE) file for details.
+
+```
+Copyright 2026 Sergio Fraile
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+```
