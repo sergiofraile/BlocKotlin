@@ -1,7 +1,7 @@
 # BlocKotlin
 
 [![CI](https://github.com/sergiofraile/BlocKotlin/actions/workflows/ci.yml/badge.svg)](https://github.com/sergiofraile/BlocKotlin/actions/workflows/ci.yml)
-[![JitPack](https://jitpack.io/v/sergiofraile/BlocKotlin.svg)](https://jitpack.io/#sergiofraile/BlocKotlin)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.sergiofraile/bloc.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 An Android showcase of the **Bloc** state-management pattern written in Kotlin and Jetpack Compose, mirroring the iOS Swift implementation at [BlocSwift](https://github.com/sergiofraile/BlocSwift).
@@ -167,27 +167,15 @@ BlocKotlin/
 
 ## Using the library
 
-Add the JitPack repository to your project's `settings.gradle.kts`:
-
-```kotlin
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://jitpack.io")
-    }
-}
-```
-
-Then add the dependency:
+`mavenCentral()` is already in every Android project's `settings.gradle.kts`, so no repository change is needed. Just add the dependency:
 
 ```kotlin
 dependencies {
-    implementation("com.github.sergiofraile.BlocKotlin:bloc:1.0.0")
+    implementation("io.github.sergiofraile:bloc:1.0.0")
 }
 ```
 
-Replace `1.0.0` with the [latest release tag](https://github.com/sergiofraile/BlocKotlin/releases).
+Replace `1.0.0` with the [latest version on Maven Central](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc).
 
 ---
 

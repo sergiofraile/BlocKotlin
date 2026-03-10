@@ -21,29 +21,17 @@ The library implements the **BLoC (Business Logic Component)** pattern popularis
 
 ## Installation
 
-### Via JitPack (recommended)
+### Via Maven Central (recommended)
 
-Add the JitPack repository to your project's `settings.gradle.kts`:
-
-```kotlin
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://jitpack.io")
-    }
-}
-```
-
-Then add the dependency to your app's `build.gradle.kts`:
+`mavenCentral()` is already present in every Android project's `settings.gradle.kts`, so no repository change is needed. Add the dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.sergiofraile.BlocKotlin:bloc:1.0.0")
+    implementation("io.github.sergiofraile:bloc:1.0.0")
 }
 ```
 
-Replace `1.0.0` with the [latest release tag](https://github.com/sergiofraile/BlocKotlin/releases).
+Replace `1.0.0` with the [latest version on Maven Central](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc).
 
 ### Local (monorepo / development)
 

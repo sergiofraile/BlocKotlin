@@ -3,11 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.dokka)
-    `maven-publish`
+    alias(libs.plugins.vanniktech.publish)
 }
-
-group = "com.github.sergiofraile.BlocKotlin"
-version = "1.0.0"
 
 android {
     namespace = "dev.bloc"
@@ -25,12 +22,6 @@ android {
     buildFeatures {
         compose = true
     }
-
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
-    }
 }
 
 dependencies {
@@ -47,39 +38,37 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.github.sergiofraile.BlocKotlin"
-                artifactId = "bloc"
-                version = project.version.toString()
+mavenPublishing {
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
 
-                pom {
-                    name.set("BlocKotlin")
-                    description.set("A Kotlin Bloc state-management library for Android, mirroring the API of flutter_bloc and BlocSwift.")
-                    url.set("https://github.com/sergiofraile/BlocKotlin")
-                    licenses {
-                        license {
-                            name.set("Apache License 2.0")
-                            url.set("https://www.apache.org/licenses/LICENSE-2.0")
-                        }
-                    }
-                    developers {
-                        developer {
-                            id.set("sergiofraile")
-                            name.set("Sergio Fraile")
-                            url.set("https://github.com/sergiofraile")
-                        }
-                    }
-                    scm {
-                        connection.set("scm:git:github.com/sergiofraile/BlocKotlin.git")
-                        developerConnection.set("scm:git:ssh://github.com/sergiofraile/BlocKotlin.git")
-                        url.set("https://github.com/sergiofraile/BlocKotlin/tree/main")
-                    }
-                }
+    coordinates(
+        groupId    = "io.github.sergiofraile",
+        artifactId = "bloc",
+        version    = "1.0.0",
+    )
+
+    pom {
+        name.set("BlocKotlin")
+        description.set("A Kotlin Bloc state-management library for Android, mirroring the API of flutter_bloc and BlocSwift.")
+        url.set("https://github.com/sergiofraile/BlocKotlin")
+        licenses {
+            license {
+                name.set("Apache License 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0")
             }
+        }
+        developers {
+            developer {
+                id.set("sergiofraile")
+                name.set("Sergio Fraile")
+                url.set("https://github.com/sergiofraile")
+            }
+        }
+        scm {
+            url.set("https://github.com/sergiofraile/BlocKotlin")
+            connection.set("scm:git:git://github.com/sergiofraile/BlocKotlin.git")
+            developerConnection.set("scm:git:ssh://git@github.com/sergiofraile/BlocKotlin.git")
         }
     }
 }

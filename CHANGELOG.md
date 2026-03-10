@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] — 2026-03-10
 
+> First release published to [Maven Central](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc).
+
 ### Added
 
 - `Cubit<S>` — lightweight state emitter driven by direct method calls.
