@@ -1,8 +1,12 @@
 # BlocKotlin
 
+[![CI](https://github.com/sergiofraile/BlocKotlin/actions/workflows/ci.yml/badge.svg)](https://github.com/sergiofraile/BlocKotlin/actions/workflows/ci.yml)
+[![JitPack](https://jitpack.io/v/sergiofraile/BlocKotlin.svg)](https://jitpack.io/#sergiofraile/BlocKotlin)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 An Android showcase of the **Bloc** state-management pattern written in Kotlin and Jetpack Compose, mirroring the iOS Swift implementation at [BlocSwift](https://github.com/sergiofraile/BlocSwift).
+
+> **Inspiration** — This project is directly inspired by the [Bloc library for Dart/Flutter](https://bloclibrary.dev). The core concepts (Cubit, Bloc, HydratedBloc, BlocObserver, EventTransformer, and all Compose integration widgets) map 1-to-1 to their Dart counterparts. If you are familiar with `flutter_bloc`, you will feel right at home.
 
 The project is split into two modules:
 
@@ -10,6 +14,102 @@ The project is split into two modules:
 |--------|---------|
 | `:bloc` | Pure-Kotlin Bloc library — `Cubit`, `Bloc`, `HydratedBloc`, Compose integration, `BlocObserver`, `EventTransformer` |
 | `:app`  | Sample Android application — 7 interactive examples built with Jetpack Compose |
+
+---
+
+## Bloc Pattern
+
+### Cubit — direct method calls
+
+A `Cubit` is the simplest building block. The UI calls methods directly on the Cubit; the Cubit calls `emit()` to push a new state; every `BlocBuilder` subscribed to that Cubit rebuilds.
+
+```mermaid
+sequenceDiagram
+    participant UI as UI (Composable)
+    participant Cubit
+    participant State as State Stream
+
+    UI->>Cubit: method call (e.g. increment())
+    Cubit->>State: emit(newState)
+    State-->>UI: BlocBuilder rebuilds
+```
+
+---
+
+### Bloc — event-driven
+
+A `Bloc` adds an explicit **Event** layer on top of Cubit. The UI dispatches sealed-class events; the Bloc processes them through registered handlers; each handler calls `emit()` to produce a new state.
+
+```mermaid
+sequenceDiagram
+    participant UI as UI (Composable)
+    participant Bloc
+    participant Handler as Event Handler
+    participant State as State Stream
+
+    UI->>Bloc: add(Event)
+    Bloc->>Handler: routes to on<Event> { }
+    Handler->>State: emit(newState)
+    State-->>UI: BlocBuilder rebuilds
+```
+
+---
+
+### Compose integration widgets
+
+```mermaid
+flowchart TD
+    BP["BlocProvider\n― creates & scopes the Bloc/Cubit\n― disposes it when leaving composition"]
+
+    BP --> BB["BlocBuilder\n― subscribes to State\n― rebuilds composable on every change"]
+    BP --> BL["BlocListener\n― subscribes to State\n― triggers side-effects (no rebuild)"]
+    BP --> BC["BlocConsumer\n― BlocBuilder + BlocListener combined"]
+    BP --> BS["BlocSelector\n― rebuilds only when a derived value changes\n― avoids unnecessary recompositions"]
+
+    BB -->|new State| UI1["UI subtree"]
+    BL -->|side-effect| SE["Snackbar / Navigation / Analytics …"]
+    BC -->|new State + side-effect| UI2["UI subtree"]
+    BS -->|derived value changed| UI3["UI subtree"]
+```
+
+---
+
+### HydratedBloc — persistence
+
+`HydratedBloc` extends `Bloc` with automatic state serialisation. On the first run the initial state is used; on every subsequent launch the last persisted state is restored from `HydratedStorage` before any events are processed.
+
+```mermaid
+flowchart LR
+    Launch([App Launch]) --> HS{HydratedStorage\nhas saved state?}
+    HS -- yes --> RS[Restore saved state]
+    HS -- no  --> IS[Use initialState]
+    RS --> Bloc
+    IS --> Bloc
+    Bloc -->|emit| NS[New State]
+    NS -->|serialise & persist| HS
+    NS -->|BlocBuilder rebuilds| UI([UI])
+```
+
+---
+
+### Full lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> Created : BlocProvider / remember
+
+    Created --> Active : first subscriber attaches
+    Active --> Active : add(Event) / method call\nemit(newState)
+    Active --> Closed : close() / leave composition
+
+    Closed --> [*]
+
+    note right of Active
+        BlocObserver hooks fire here:
+        onCreate · onEvent · onChange
+        onTransition · onError · onClose
+    end note
+```
 
 ---
 
@@ -55,15 +155,43 @@ BlocKotlin/
 | Tool | Version |
 |------|---------|
 | Android Studio | Meerkat (2024.3.1+) |
+| JDK | 17+ |
 | Kotlin | 2.0.21 |
-| AGP | 8.x |
+| AGP | 9.0.1 |
+| Gradle | 9.2.1 |
 | Min SDK | 26 |
-| Target SDK | 35 |
-| Compose BOM | 2025.02.00 |
+| Target SDK | 36 |
+| Compose BOM | 2024.12.01 |
 
 ---
 
-## Getting Started
+## Using the library
+
+Add the JitPack repository to your project's `settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+}
+```
+
+Then add the dependency:
+
+```kotlin
+dependencies {
+    implementation("com.github.sergiofraile.BlocKotlin:bloc:1.0.0")
+}
+```
+
+Replace `1.0.0` with the [latest release tag](https://github.com/sergiofraile/BlocKotlin/releases).
+
+---
+
+## Getting Started (sample app)
 
 ```bash
 git clone https://github.com/sergiofraile/BlocKotlin
@@ -200,6 +328,18 @@ Or in Android Studio: **Run** → **Edit Configurations** → **+** → **JUnit*
 The iOS Swift implementation lives at [BlocSwift](https://github.com/sergiofraile/BlocSwift).
 
 The Bloc library API is intentionally parallel — `Bloc`, `Cubit`, `HydratedBloc`, `BlocObserver`, `EventTransformer`, `BlocListener`, `BlocBuilder`, `BlocSelector`, `BlocConsumer` all exist in both implementations with matching semantics. The `:bloc` Kotlin module is structured to be KMP-ready for future cross-platform sharing.
+
+---
+
+## Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request or issue.
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a history of notable changes.
 
 ---
 

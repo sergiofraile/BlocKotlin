@@ -1,6 +1,7 @@
 [versions]
 agp = "9.0.1"
 coil = "2.7.0"
+dokka = "1.9.20"
 kotlin = "2.0.21"
 kotlinxCoroutines = "1.9.0"
 kotlinxSerialization = "1.7.3"
@@ -55,6 +56,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
