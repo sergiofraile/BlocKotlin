@@ -806,3 +806,7 @@ You may obtain a copy of the License at
 ---
 
 *Built with ❤️ for the Android community*
+
+---
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sergiof)
