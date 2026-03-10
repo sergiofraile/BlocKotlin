@@ -6,12 +6,19 @@ plugins {
     alias(libs.plugins.vanniktech.publish)
 }
 
+kotlin {
+    // Warn on any public declaration that lacks an explicit visibility modifier.
+    // Upgrade to explicitApi() once all warnings are resolved.
+    explicitApiWarning()
+}
+
 android {
     namespace = "dev.bloc"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 26
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     compileOptions {
