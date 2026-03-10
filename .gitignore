@@ -77,3 +77,7 @@ Desktop.ini
 google-services.json
 GoogleService-Info.plist
 secrets.properties
+
+# ─── Private examples (kept locally only) ────────────────────────────────────
+app/src/main/kotlin/dev/bloc/sample/examples/suvs/
+app/src/test/kotlin/dev/bloc/sample/examples/suvs/

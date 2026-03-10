@@ -39,8 +39,6 @@ import dev.bloc.sample.examples.scoreboard.ScoreBloc
 import dev.bloc.sample.examples.scoreboard.ScoreScreen
 import dev.bloc.sample.examples.stopwatch.StopwatchCubit
 import dev.bloc.sample.examples.stopwatch.StopwatchScreen
-import dev.bloc.sample.examples.suvs.SUVBloc
-import dev.bloc.sample.examples.suvs.SUVScreen
 import dev.bloc.sample.ui.home.HomeScreen
 import dev.bloc.sample.ui.home.WelcomeDetailPane
 
@@ -85,12 +83,6 @@ enum class BlocDestination(
         subtitle = "Async API · enum states · network",
         accentStart = 0xFFF44336,
         accentEnd = 0xFFB71C1C,
-    ),
-    SUVS(
-        title = "SUVs",
-        subtitle = "Auth flow · Repository pattern · DI",
-        accentStart = 0xFF2196F3,
-        accentEnd = 0xFF0D47A1,
     ),
     LORCANA(
         title = "Lorcana",
@@ -407,16 +399,6 @@ private fun ExampleDetailHost(
                 DisposableEffect(f1Bloc) { onDispose { f1Bloc.close() } }
                 FormulaOneScreen(
                     bloc           = f1Bloc,
-                    showBackButton = showBackButton,
-                    onBack         = onBack,
-                )
-            }
-
-            BlocDestination.SUVS -> {
-                val suvBloc = remember { SUVBloc() }
-                DisposableEffect(suvBloc) { onDispose { suvBloc.close() } }
-                SUVScreen(
-                    bloc           = suvBloc,
                     showBackButton = showBackButton,
                     onBack         = onBack,
                 )

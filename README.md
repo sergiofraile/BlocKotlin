@@ -1,20 +1,20 @@
-# BlocProjectKotlin
+# BlocKotlin
 
-An Android showcase of the **Bloc** state-management pattern written in Kotlin and Jetpack Compose, mirroring the iOS Swift implementation at [BlocProjectSwift](https://github.com/your-org/BlocProjectSwift).
+An Android showcase of the **Bloc** state-management pattern written in Kotlin and Jetpack Compose, mirroring the iOS Swift implementation at [BlocSwift](https://github.com/sergiofraile/BlocSwift).
 
 The project is split into two modules:
 
 | Module | Purpose |
 |--------|---------|
 | `:bloc` | Pure-Kotlin Bloc library — `Cubit`, `Bloc`, `HydratedBloc`, Compose integration, `BlocObserver`, `EventTransformer` |
-| `:app`  | Sample Android application — 8 interactive examples built with Jetpack Compose |
+| `:app`  | Sample Android application — 7 interactive examples built with Jetpack Compose |
 
 ---
 
 ## Architecture
 
 ```
-BlocProjectKotlin/
+BlocKotlin/
 ├── bloc/                          # Library module (KMP-ready)
 │   └── src/main/kotlin/dev/bloc/
 │       ├── BlocBase.kt            # StateEmitter interface
@@ -41,7 +41,6 @@ BlocProjectKotlin/
         │   ├── heartbeat/         # Scoped Bloc lifecycle
         │   ├── scoreboard/        # BlocListener + BlocConsumer
         │   ├── formulaone/        # Async API + enum states
-        │   ├── suvs/              # Auth flow + Repository pattern
         │   └── lorcana/           # Debounce + infinite scroll + BlocSelector
         ├── navigation/            # ListDetailPaneScaffold adaptive layout
         └── ui/                    # Theme, HomeScreen
@@ -65,8 +64,8 @@ BlocProjectKotlin/
 ## Getting Started
 
 ```bash
-git clone https://github.com/your-org/BlocProjectKotlin
-cd BlocProjectKotlin
+git clone https://github.com/sergiofraile/BlocKotlin
+cd BlocKotlin
 ./gradlew :app:installDebug
 ```
 
@@ -140,13 +139,7 @@ Fetches live F1 Driver Championship data from [f1api.dev](https://f1api.dev). De
 
 ---
 
-### 7. SUVs — Repository Pattern
-
-Full auth-flow state machine (Initial → Authenticating → LoadingInstances → Loaded) backed by a `SUVRepositoryProtocol`. Ships with `MockSUVRepository` for demo use.
-
----
-
-### 8. Lorcana — Debounce · Infinite Scroll · `BlocSelector`
+### 7. Lorcana — Debounce · Infinite Scroll · `BlocSelector`
 
 Searches the [Lorcana API](https://api.lorcana-api.com) with a 300 ms debounce transformer. Infinite scroll is triggered when the `LazyColumn` nears its end. Two `BlocSelector` instances drive the footer without recomposing the card list.
 
@@ -202,6 +195,6 @@ Or in Android Studio: **Run** → **Edit Configurations** → **+** → **JUnit*
 
 ## iOS Counterpart
 
-The iOS Swift implementation lives at [BlocProjectSwift](https://github.com/your-org/BlocProjectSwift).
+The iOS Swift implementation lives at [BlocSwift](https://github.com/sergiofraile/BlocSwift).
 
 The Bloc library API is intentionally parallel — `Bloc`, `Cubit`, `HydratedBloc`, `BlocObserver`, `EventTransformer`, `BlocListener`, `BlocBuilder`, `BlocSelector`, `BlocConsumer` all exist in both implementations with matching semantics. The `:bloc` Kotlin module is structured to be KMP-ready for future cross-platform sharing.

@@ -22,7 +22,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BlocProjectKotlin"
+rootProject.name = "BlocKotlin"
 include(":app")
 include(":bloc")
  

@@ -64,10 +64,6 @@ object ExamplePalette {
     val f1Primary = Color(0xFFE8002D)
     val f1Variant = Color(0xFFFF1E00)
 
-    // SUVs — steel blue
-    val suvPrimary  = Color(0xFF1565C0)
-    val suvVariant  = Color(0xFF42A5F5)
-
     // Lorcana — deep purple / galaxy
     val lorcanaPrimary = Color(0xFF6A1B9A)
     val lorcanaVariant = Color(0xFFCE93D8)
