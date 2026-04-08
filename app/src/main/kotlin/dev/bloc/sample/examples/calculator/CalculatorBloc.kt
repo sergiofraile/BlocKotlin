@@ -112,7 +112,7 @@ class CalculatorBloc : Bloc<CalculatorState, CalculatorEvent>(CalculatorState.in
         // Chain: if there's a pending op and the user hasn't started a new operand yet,
         // evaluate the existing expression before storing the new operation.
         if (s.pendingOperation != null && !s.isNewEntry && s.storedValue != null) {
-            s = evaluate(s, s.storedValue!!, s.currentDouble, s.pendingOperation!!)
+            s = evaluate(s, s.storedValue, s.currentDouble, s.pendingOperation)
             if (s.hasError) { emit(s); return }
         }
         emit(s.copy(storedValue = s.currentDouble, pendingOperation = op, isNewEntry = true))
