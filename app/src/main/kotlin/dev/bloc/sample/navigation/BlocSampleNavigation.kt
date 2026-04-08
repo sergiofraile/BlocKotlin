@@ -20,7 +20,9 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import dev.bloc.sample.examples.calculator.CalculatorBloc
 import dev.bloc.sample.examples.calculator.CalculatorLogScreen
 import dev.bloc.sample.examples.calculator.CalculatorScreen
@@ -108,6 +110,7 @@ enum class BlocDestination(
 @Composable
 fun BlocSampleNavigation() {
     val navigator = rememberListDetailPaneScaffoldNavigator<BlocDestination>()
+    val scope = rememberCoroutineScope()
 
     // The selected destination drives both list highlighting and detail content.
     // We check both Detail and Extra so that when a phone user taps "View Log"
@@ -119,7 +122,7 @@ fun BlocSampleNavigation() {
                     it.pane == ListDetailPaneScaffoldRole.Detail ||
                         it.pane == ListDetailPaneScaffoldRole.Extra
                 }
-                ?.content
+                ?.contentKey
         }
     }
 
@@ -212,12 +215,12 @@ fun BlocSampleNavigation() {
     // Hardware / gesture back — priority order (last registered = highest priority):
     // 1. Navigator back (phones: detail → list)
     BackHandler(enabled = navigator.canNavigateBack()) {
-        navigator.navigateBack()
+        scope.launch { navigator.navigateBack() }
     }
     // 2. Close the Lorcana set view (when no card is selected in the Extra pane)
     BackHandler(enabled = lorcanaSetIsOpen && lorcanaSetCard == null) {
         lorcanaSetName = null
-        if (navigator.canNavigateBack()) navigator.navigateBack()
+        if (navigator.canNavigateBack()) scope.launch { navigator.navigateBack() }
     }
     // 3. Clear the selected card first (highest priority)
     BackHandler(enabled = lorcanaSetIsOpen && lorcanaSetCard != null) {
@@ -232,14 +235,16 @@ fun BlocSampleNavigation() {
                 HomeScreen(
                     selectedDestination = selectedDestination,
                     onNavigate = { dest ->
-                        navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, dest)
-                        // On foldable / tablet (2+ horizontal panes) the Calculator gets
-                        // a dedicated Extra pane for its lifecycle log. Navigating there
-                        // collapses the list menu and shows the pad + log side by side.
-                        if (dest == BlocDestination.CALCULATOR &&
-                            navigator.scaffoldDirective.maxHorizontalPartitions >= 2
-                        ) {
-                            navigator.navigateTo(ListDetailPaneScaffoldRole.Extra, dest)
+                        scope.launch {
+                            navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, dest)
+                            // On foldable / tablet (2+ horizontal panes) the Calculator gets
+                            // a dedicated Extra pane for its lifecycle log. Navigating there
+                            // collapses the list menu and shows the pad + log side by side.
+                            if (dest == BlocDestination.CALCULATOR &&
+                                navigator.scaffoldDirective.maxHorizontalPartitions >= 2
+                            ) {
+                                navigator.navigateTo(ListDetailPaneScaffoldRole.Extra, dest)
+                            }
                         }
                     },
                 )
@@ -255,7 +260,7 @@ fun BlocSampleNavigation() {
                         onBack         = {
                             lorcanaSetName = null
                             lorcanaSetCard = null
-                            if (navigator.canNavigateBack()) navigator.navigateBack()
+                            if (navigator.canNavigateBack()) scope.launch { navigator.navigateBack() }
                         },
                         cachedCards    = lorcanaSetCardCache[lorcanaSetName],
                         onCardsLoaded  = { lorcanaSetCardCache[lorcanaSetName!!] = it },
@@ -264,7 +269,7 @@ fun BlocSampleNavigation() {
                     selectedDestination != null -> ExampleDetailHost(
                         destination      = selectedDestination!!,
                         showBackButton   = listIsHidden,
-                        onBack           = { navigator.navigateBack() },
+                        onBack           = { scope.launch { navigator.navigateBack() } },
                         calculatorBloc   = calculatorBlocState,
                         lorcanaBloc      = lorcanaBlocState,
                         isExpandedLayout = isExpandedLayout,
@@ -272,13 +277,13 @@ fun BlocSampleNavigation() {
                             { setName ->
                                 lorcanaSetName = setName
                                 lorcanaSetCard = null
-                                // Navigate synchronously (same as Calculator → Extra pane)
-                                // so the back-stack entry is created and canNavigateBack() is true.
-                                navigator.navigateTo(ListDetailPaneScaffoldRole.Extra, BlocDestination.LORCANA)
+                                scope.launch {
+                                    navigator.navigateTo(ListDetailPaneScaffoldRole.Extra, BlocDestination.LORCANA)
+                                }
                             }
                         } else null,
                         onShowLog        = if (logIsHidden) {
-                            { navigator.navigateTo(ListDetailPaneScaffoldRole.Extra, BlocDestination.CALCULATOR) }
+                            { scope.launch { navigator.navigateTo(ListDetailPaneScaffoldRole.Extra, BlocDestination.CALCULATOR) } }
                         } else null,
                     )
                     else -> WelcomeDetailPane()
@@ -293,7 +298,7 @@ fun BlocSampleNavigation() {
                         CalculatorLogScreen(
                             bloc           = calcBloc,
                             showBackButton = logPaneIsAlone,
-                            onBack         = { navigator.navigateBack() },
+                            onBack         = { scope.launch { navigator.navigateBack() } },
                         )
                     lorcanaSetIsOpen -> {
                         val card = lorcanaSetCard
