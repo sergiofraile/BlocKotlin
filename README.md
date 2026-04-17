@@ -791,17 +791,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a history of notable changes. For release i
 
 ## License
 
-This project is licensed under the **Apache License, Version 2.0**. See the [LICENSE](LICENSE) file for details.
-
-```
-Copyright 2026 Sergio Fraile
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-```
+This library is released under the Apache 2.0 license with an additional AI/ML restriction. See [LICENSE](LICENSE) and [LICENSE-AI-ADDENDUM](LICENSE-AI-ADDENDUM) for details.
 
 ---
 
