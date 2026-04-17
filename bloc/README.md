@@ -27,11 +27,11 @@ The library implements the **BLoC (Business Logic Component)** pattern popularis
 
 ```kotlin
 dependencies {
-    implementation("io.github.sergiofraile:bloc:1.0.0")
+    implementation("io.github.sergiofraile:bloc:1.1.0")
 }
 ```
 
-Replace `1.0.0` with the [latest version on Maven Central](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc).
+Replace `1.1.0` with the [latest version on Maven Central](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc).
 
 ### Local (monorepo / development)
 

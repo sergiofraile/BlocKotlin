@@ -1,4 +1,0 @@
-# Suvify API client key
-# Copy this file to suvify.properties and replace the placeholder with your real key.
-# suvify.properties is gitignored — never commit real credentials.
-suvify_key=YOUR_API_KEY_HERE

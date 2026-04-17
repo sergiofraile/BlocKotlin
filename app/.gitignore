@@ -1,2 +1,3 @@
-/build
-/src/main/assets/suvify.properties
+/build/
+/release/
+*.hprof

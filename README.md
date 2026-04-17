@@ -701,11 +701,11 @@ The app uses `ListDetailPaneScaffold` (Material3 Adaptive) for a responsive layo
 
 ```kotlin
 dependencies {
-    implementation("io.github.sergiofraile:bloc:1.0.0")
+    implementation("io.github.sergiofraile:bloc:1.1.0")
 }
 ```
 
-Replace `1.0.0` with the [latest version on Maven Central](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc).
+Replace `1.1.0` with the [latest version on Maven Central](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc).
 
 ### Running the sample app
 
