@@ -1,0 +1,83 @@
+# ─── Built outputs ───────────────────────────────────────────────────────────
+/build/
+**/build/
+out/
+/captures/
+
+# ─── Gradle ──────────────────────────────────────────────────────────────────
+.gradle/
+gradle-app.setting
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# ─── Local configuration (machine-specific, may contain secrets) ─────────────
+local.properties
+*.local.properties
+
+# ─── IntelliJ IDEA / Android Studio ──────────────────────────────────────────
+*.iml
+*.ipr
+*.iws
+.idea/
+# Keep shared run configurations if you use them
+!.idea/runConfigurations/
+
+# ─── Kotlin ──────────────────────────────────────────────────────────────────
+.kotlin/
+
+# ─── Android ─────────────────────────────────────────────────────────────────
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+proguard/
+.externalNativeBuild/
+.cxx/
+*.keystore
+!debug.keystore
+
+# ─── Native build artefacts ──────────────────────────────────────────────────
+*.so
+*.o
+*.a
+CMakeFiles/
+
+# ─── Test & coverage reports ─────────────────────────────────────────────────
+reports/
+test-results/
+jacoco/
+*.exec
+
+# ─── macOS ───────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ─── Windows ─────────────────────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ─── Linux ───────────────────────────────────────────────────────────────────
+*~
+
+# ─── Editor / IDE misc ───────────────────────────────────────────────────────
+*.swp
+*.swo
+.vscode/
+.cursor/
+
+# ─── Environment / secrets ───────────────────────────────────────────────────
+.env
+.env.*
+google-services.json
+GoogleService-Info.plist
+secrets.properties
+
+# ─── Private examples (kept locally only) ────────────────────────────────────
+app/src/main/kotlin/dev/bloc/sample/examples/suvs/
+app/src/test/kotlin/dev/bloc/sample/examples/suvs/

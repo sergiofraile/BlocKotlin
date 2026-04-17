@@ -1,0 +1,53 @@
+name: Feature request
+description: Suggest an improvement or new capability
+labels: [ enhancement ]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening a feature request, please check whether a similar one already exists.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What problem are you trying to solve? What is currently missing or frustrating?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature you would like to see added.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you considered any alternative approaches or workarounds?
+    validations:
+      required: false
+
+  - type: textarea
+    id: api-sketch
+    attributes:
+      label: API sketch (optional)
+      description: If you have a rough idea of what the API should look like, share it here.
+      render: kotlin
+    validations:
+      required: false
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Target platform
+      options:
+        - Android only
+        - KMP (Android + other targets)
+        - Both
+    validations:
+      required: true
