@@ -2,6 +2,7 @@ package dev.bloc.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
 import dev.bloc.BlocRegistry
 import dev.bloc.StateEmitter
 
@@ -74,8 +75,12 @@ fun BlocProvider(
     blocs: List<StateEmitter<*>>,
     content: @Composable () -> Unit,
 ) {
+    // Registration must happen synchronously during composition, not inside the
+    // DisposableEffect below: that effect commits after content() has already been
+    // composed, so a descendant resolving a bloc via `remember { BlocRegistry.resolve(...) }`
+    // during its own composition would find nothing registered yet.
+    remember(blocs) { BlocRegistry.register(blocs) }
     DisposableEffect(Unit) {
-        BlocRegistry.register(blocs)
         onDispose {
             BlocRegistry.closeAll()
         }
