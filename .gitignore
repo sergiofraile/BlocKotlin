@@ -71,6 +71,10 @@ Desktop.ini
 .vscode/
 .cursor/
 
+# ─── Generated brand assets ──────────────────────────────────────────────────
+assets/out/
+node_modules/
+
 # ─── Environment / secrets ───────────────────────────────────────────────────
 .env
 .env.*

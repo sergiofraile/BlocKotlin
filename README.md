@@ -1,5 +1,7 @@
 # BlocKotlin
 
+![BlocKotlin](assets/banner.png)
+
 [![CI](https://github.com/sergiofraile/BlocKotlin/actions/workflows/ci.yml/badge.svg)](https://github.com/sergiofraile/BlocKotlin/actions/workflows/ci.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.sergiofraile/bloc.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.sergiofraile/bloc)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
