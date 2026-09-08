@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="622" viewBox="0 0 1024 622">
+  <defs>
+    
+  <radialGradient id="orange" cx="0.32" cy="0.26" r="0.95">
+    <stop offset="0" stop-color="#FF9D4D"/><stop offset="0.55" stop-color="#FF7A2F"/><stop offset="1" stop-color="#EF5F1B"/>
+  </radialGradient>
+  <radialGradient id="purple" cx="0.72" cy="0.28" r="1">
+    <stop offset="0" stop-color="#A97BFF"/><stop offset="0.5" stop-color="#7F52FF"/><stop offset="1" stop-color="#B31FE0"/>
+  </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b1611"/><stop offset="0.45" stop-color="#13131d"/><stop offset="1" stop-color="#0c0d15"/>
+    </linearGradient>
+    <radialGradient id="glowO" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF7A2F" stop-opacity="0.42"/><stop offset="1" stop-color="#FF7A2F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowP" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7F52FF" stop-opacity="0.38"/><stop offset="1" stop-color="#7F52FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#EF5F1B"/><stop offset="1" stop-color="#7F52FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="622" fill="url(#bg)"/>
+  <ellipse cx="325" cy="245" rx="440" ry="370" fill="url(#glowO)"/>
+  <ellipse cx="720" cy="245" rx="440" ry="370" fill="url(#glowP)"/>
+  <g transform="translate(512 236) scale(1.12)">
+    <circle cx="74" cy="0" r="104" fill="url(#purple)"/>
+    <g transform="translate(74 0) translate(-50 -50)"><g fill="#fff">
+  <rect x="27" y="31" width="30" height="11" rx="5.5"/>
+  <rect x="27" y="45" width="46" height="11" rx="5.5"/>
+  <rect x="27" y="59" width="22" height="11" rx="5.5"/>
+</g></g>
+    <circle cx="-74" cy="0" r="104" fill="url(#orange)"/>
+    <g transform="translate(-74 0) translate(-50 -50)"><path fill="#fff" d="M12 54 C27 33 41 33 50 49 C59 33 73 33 88 54 C73 45 60 47 50 60 C40 47 27 45 12 54 Z"/></g></g>
+  <text x="512" y="452" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="94" font-weight="800" letter-spacing="-2.5">
+    <tspan fill="#8E6BFF">Bloc</tspan><tspan fill="#FF7A2F">Kotlin</tspan>
+  </text>
+  <text x="512" y="503" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="500" fill="#9aa0ad" letter-spacing="0.4">
+    Predictable state management for Kotlin · Inspired by BLoC
+  </text>
+  <rect x="0" y="614" width="1024" height="8" fill="url(#rule)"/>
+</svg>

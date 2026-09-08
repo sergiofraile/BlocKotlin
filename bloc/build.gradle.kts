@@ -12,6 +12,24 @@ kotlin {
     explicitApiWarning()
 }
 
+dokka {
+    moduleName.set("BlocKotlin")
+
+    dokkaSourceSets.configureEach {
+        includes.from("dokka/MODULE.md")
+    }
+
+    pluginsConfiguration.html {
+        // A custom logo-icon.svg also becomes the site favicon (Dokka serves it
+        // from images/logo-icon.svg and references it in every page's <head>).
+        customAssets.from(
+            "dokka/logo-icon.svg",
+            rootProject.file("assets/banner.png"),
+        )
+        footerMessage.set("© 2026 Sergio Fraile — Apache 2.0")
+    }
+}
+
 android {
     namespace = "dev.bloc"
     compileSdk = 36
@@ -52,13 +70,15 @@ mavenPublishing {
     coordinates(
         groupId    = "io.github.sergiofraile",
         artifactId = "bloc",
-        version    = "1.1.1",
+        version    = "1.1.2",
     )
 
     pom {
         name.set("BlocKotlin")
         description.set("A Kotlin Bloc state-management library for Android, mirroring the API of flutter_bloc and BlocSwift.")
-        url.set("https://github.com/sergiofraile/BlocKotlin")
+        // Project homepage — Maven Central and mvnrepository render this as the
+        // "Project URL" link and derive the artifact icon from its favicon.
+        url.set("https://blockotlin.thewalkingpuffin.com")
         licenses {
             license {
                 name.set("Apache License 2.0")

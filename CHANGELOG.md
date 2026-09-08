@@ -11,6 +11,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.2] — 2026-08-30
+
+### Changed
+
+- Point the published POM `url` at the documentation site
+  (`https://blockotlin.thewalkingpuffin.com`) so Maven Central and mvnrepository
+  render a project link with a real favicon / icon.
+
+### Added
+
+- Project banner (`assets/banner.png`) and logo mark, shown in the README and on
+  the generated API docs landing page.
+- Custom Dokka logo / favicon, plus `favicon.ico` and `apple-touch-icon.png`
+  served at the docs site root.
+- Landing-page content (`bloc/dokka/MODULE.md`) for the generated API documentation.
+
+---
+
+## [1.1.1] — 2026-08-27
+
+### Fixed
+
+- Register blocs before `content()` in `BlocProvider` so child composables can
+  resolve them during first composition.
+
+---
+
 ## [1.1.0] — 2026-04-17
 
 ### Changed
@@ -44,6 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sample app (`:app`) with 7 interactive examples: Counter, Stopwatch, Calculator, Heartbeat, Score Board, Formula One, Lorcana.
 - Apache 2.0 license.
 
-[Unreleased]: https://github.com/sergiofraile/BlocKotlin/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/sergiofraile/BlocKotlin/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/sergiofraile/BlocKotlin/compare/v.1.1.1...v1.1.2
+[1.1.1]: https://github.com/sergiofraile/BlocKotlin/compare/v1.1.0...v.1.1.1
 [1.1.0]: https://github.com/sergiofraile/BlocKotlin/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/sergiofraile/BlocKotlin/releases/tag/v1.0.0
