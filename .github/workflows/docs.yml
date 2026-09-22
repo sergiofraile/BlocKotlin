@@ -39,6 +39,11 @@ jobs:
       - name: Add CNAME for custom domain
         run: echo "blockotlin.thewalkingpuffin.com" > bloc/build/dokka/html/CNAME
 
+      - name: Add favicon and touch icon at site root
+        run: |
+          cp bloc/dokka/favicon.ico bloc/build/dokka/html/favicon.ico
+          cp bloc/dokka/apple-touch-icon.png bloc/build/dokka/html/apple-touch-icon.png
+
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
