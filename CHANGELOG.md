@@ -11,9 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.1.2] — 2026-08-30
+## [1.1.2] — 2026-09-23
 
 ### Changed
+
+- Build toolchain: Android Gradle Plugin 9.1.0 → 9.2.0, Gradle 9.3.1 → 9.5.0.
+- Compose BOM 2026.03.01 → 2026.04.01 (the library's `compose-runtime` / `compose-ui`
+  dependencies follow the BOM).
 
 - Point the published POM `url` at the documentation site
   (`https://blockotlin.thewalkingpuffin.com`) so Maven Central and mvnrepository
