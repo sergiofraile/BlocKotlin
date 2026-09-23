@@ -79,6 +79,9 @@ fun BlocProvider(
     // DisposableEffect below: that effect commits after content() has already been
     // composed, so a descendant resolving a bloc via `remember { BlocRegistry.resolve(...) }`
     // during its own composition would find nothing registered yet.
+    // Lint's suggested SideEffect would reintroduce exactly that bug, so the Unit-returning
+    // remember is intentional here.
+    @Suppress("RememberReturnType")
     remember(blocs) { BlocRegistry.register(blocs) }
     DisposableEffect(Unit) {
         onDispose {
