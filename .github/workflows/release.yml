@@ -41,7 +41,7 @@ jobs:
         run: ./gradlew :bloc:assembleRelease
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: bloc/build/outputs/aar/bloc-release.aar
           generate_release_notes: true
