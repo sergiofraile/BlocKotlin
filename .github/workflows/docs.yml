@@ -45,7 +45,7 @@ jobs:
           cp bloc/dokka/apple-touch-icon.png bloc/build/dokka/html/apple-touch-icon.png
 
       - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: bloc/build/dokka/html
 
