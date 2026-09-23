@@ -28,6 +28,9 @@ jobs:
       - name: Run bloc unit tests
         run: ./gradlew :bloc:test
 
+      - name: Run bloc lint
+        run: ./gradlew :bloc:lintDebug
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v7
