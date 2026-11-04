@@ -791,6 +791,18 @@ See [CHANGELOG.md](CHANGELOG.md) for a history of notable changes. For release i
 
 ---
 
+## Local CI
+
+`scripts/ci-local.sh` runs the checks from `.github/workflows/` on your machine, in the same order: `:bloc:test`, `:bloc:lintDebug` and `:app:assembleDebug`. `scripts/ci-local.sh --full` adds the Dokka docs and the release AAR. Steps that need macOS or missing tools print `SKIPPED (reason)`.
+
+A pre-push hook in `.githooks/` runs the fast mode. Enable it once per clone:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+Bypass it for one push with `SKIP_LOCAL_CI=1 git push` or `git push --no-verify`.
+
 ## License
 
 This library is released under the Apache 2.0 license with an additional AI/ML restriction. See [LICENSE](LICENSE) and [LICENSE-AI-ADDENDUM](LICENSE-AI-ADDENDUM) for details.
