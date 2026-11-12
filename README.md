@@ -793,15 +793,15 @@ See [CHANGELOG.md](CHANGELOG.md) for a history of notable changes. For release i
 
 ## Local CI
 
-`scripts/ci-local.sh` runs the checks from `.github/workflows/` on your machine, in the same order: `:bloc:test`, `:bloc:lintDebug` and `:app:assembleDebug`. `scripts/ci-local.sh --full` adds the Dokka docs and the release AAR. Steps that need macOS or missing tools print `SKIPPED (reason)`.
+[localy](https://github.com/sergiofraile/localy) runs the workflows in `.github/workflows/` on your machine, with the overrides in `localy.toml`. `localy run --profile fast` runs `ci.yml` (`:bloc:test`, `:bloc:lintDebug` and `:app:assembleDebug`); `localy run` (the full profile) adds the Dokka docs and the release AAR. Steps it cannot run here, such as ones that need macOS, are reported as skipped with the reason, and a run fails if a step changed tracked files. `localy ui` shows the run history.
 
-A pre-push hook in `.githooks/` runs the fast mode. Enable it once per clone:
+The pre-push hook in `.githooks/` (written by `localy init`) runs the fast profile. Enable it once per clone, with `localy` on `PATH`:
 
 ```sh
 git config core.hooksPath .githooks
 ```
 
-Bypass it for one push with `SKIP_LOCAL_CI=1 git push` or `git push --no-verify`.
+Bypass it for one push with `LOCALY_SKIP=1 git push` or `git push --no-verify`.
 
 ## License
 

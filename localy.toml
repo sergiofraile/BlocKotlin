@@ -1,0 +1,30 @@
+# localy runs .github/workflows/ locally: `localy run --profile fast` from
+# the pre-push hook, `localy run` (the full profile) by hand. It replaced
+# scripts/ci-local.sh, which ran the same checks. Like that script, a run
+# fails if a step changed tracked files (`check-tracked-files`).
+#
+# ci.yml runs on push only for main, so both profiles simulate the pull
+# request a branch becomes. setup-java is not run: the JDK on PATH is used,
+# and when it is not JDK 17 the step is skipped with that reason (the job
+# is then "passed with skips"), as ci-local.sh uses whatever JDK it finds.
+
+# As ci-local.sh's fast mode: unit tests, lint and the debug APK.
+[profiles.fast]
+event = "pull_request"
+workflows = ["ci.yml"]
+
+[profiles.full]
+event = "pull_request"
+
+# As ci-local.sh --full: docs.yml (push to main only) and release.yml
+# (tags only) do not run for a pull request, so their build steps run as
+# local jobs. Publishing is left out: it needs signing secrets.
+[local-jobs.docs]
+name = "Generate Dokka HTML docs (docs.yml)"
+profiles = ["full"]
+run = "./gradlew :bloc:dokkaGeneratePublicationHtml"
+
+[local-jobs.release-aar]
+name = "Build release AAR (release.yml)"
+profiles = ["full"]
+run = "./gradlew :bloc:assembleRelease"
