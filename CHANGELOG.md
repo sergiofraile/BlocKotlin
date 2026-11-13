@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Built with Kotlin 2.4.20 (was 2.3.20). Consumers need Kotlin 2.3 or newer to
+  read the library's metadata.
+- kotlinx-coroutines 1.10.2 → 1.11.0, kotlinx-serialization 1.10.0 → 1.11.0.
+
 ---
 
 ## [1.1.2] — 2026-09-23
