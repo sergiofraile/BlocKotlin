@@ -28,3 +28,8 @@ run = "./gradlew :bloc:dokkaGeneratePublicationHtml"
 name = "Build release AAR (release.yml)"
 profiles = ["full"]
 run = "./gradlew :bloc:assembleRelease"
+
+# The pre-push hook skips a push whose tree already passed `fast`. `full`
+# runs everything `fast` does, so a passing `full` run counts too.
+[hook]
+verified-by = ["full"]
